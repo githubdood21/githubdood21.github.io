@@ -6,7 +6,10 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "build:cv": "node scripts/build-cv.mjs",
+    "predev": "npm run build:cv",
     "dev": "astro dev",
+    "prebuild": "npm run build:cv",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

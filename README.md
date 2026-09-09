@@ -82,6 +82,33 @@ VS Code users can press `F5` and select **Portfolio: Astro + Edge**. The include
 
 > Do not open `dist/index.html` directly using a `file://` URL. Browsers block the generated JavaScript modules in that context. Use the development server or an HTTP preview server.
 
+## CV PDF
+
+Edit `cv.txt` using LaTeX (the same syntax as Overleaf). The hero's **View CV**
+button opens the generated PDF in a new tab.
+
+`npm run dev -- --background` and `npm run build` automatically compile the CV
+before starting Astro. The VS Code F5 launch task also compiles it first.
+GitHub Actions uses `npm run build`, so pushing changes to
+`cv.txt` to `master` also regenerates the deployed PDF. A compilation error stops
+the build instead of deploying an outdated CV.
+
+The first run downloads the pinned Tectonic 0.17.0 compiler from its official
+GitHub release into `.astro/cv-tools/`. Tectonic downloads and caches the LaTeX
+packages it needs, so the first compilation requires internet access and can
+take several minutes. Windows, Linux, and macOS are supported by the script;
+archive extraction requires `tar` (included in current Windows installations).
+You can set `TECTONIC_PATH` to use an existing compiler instead.
+
+To regenerate the PDF while the dev server is already running:
+
+```sh
+npm run build:cv
+```
+
+Commit `cv.txt`; `public/cv.pdf` is generated and ignored by Git. No manual
+Overleaf export is needed.
+
 ## Production build
 
 Generate the static production site:

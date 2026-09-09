@@ -1,6 +1,36 @@
 <canvas class="sorting-background" aria-hidden="true"></canvas>
+<aside class="sorting-metrics" aria-label="Background sorting metrics" hidden>
+	<p class="sorting-metrics__heading">Background sort <span data-sort-state>Preparing</span></p>
+	<dl>
+		<div class="sorting-metrics__algorithm"><dt>Algorithm</dt><dd data-sort-algorithm>Preparing</dd></div>
+		<div title="Cube transfers in this run; the same cube can move multiple times"><dt>Moved</dt><dd data-sort-moved>0</dd></div>
+		<div title="Cubes occupying cells in the final staircase, out of all cubes"><dt>Correct</dt><dd data-sort-correct>0 / 0</dd></div>
+	</dl>
+</aside>
 
 <style>
+	.sorting-metrics {
+		position: fixed;
+		left: max(0.75rem, env(safe-area-inset-left));
+		bottom: max(0.75rem, env(safe-area-inset-bottom));
+		z-index: 5;
+		width: min(21rem, calc(100% - 1.5rem));
+		padding: 0.65rem 0.8rem;
+		border: 1px solid rgb(85 215 255 / 25%);
+		border-radius: 0.65rem;
+		background: rgb(8 11 22 / 92%);
+		color: #edf4ff;
+		font: 500 0.7rem/1.4 system-ui, sans-serif;
+		pointer-events: none;
+	}
+	.sorting-metrics__heading { display: flex; justify-content: space-between; gap: 0.5rem; margin: 0 0 0.4rem; color: #a6b6cd; font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; }
+	.sorting-metrics__heading span { color: #55d7ff; }
+	.sorting-metrics dl { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 0.8rem; margin: 0; }
+	.sorting-metrics dt { color: #a6b6cd; font-size: 0.6rem; }
+	.sorting-metrics dd { margin: 0.15rem 0 0; font-variant-numeric: tabular-nums; }
+	.sorting-metrics__algorithm dd { overflow-wrap: anywhere; }
+	@media print { .sorting-metrics { display: none; } }
+
 	.sorting-background {
 		position: fixed;
 		inset: 0;
@@ -59,6 +89,35 @@
 		// the initial empty frame before the cube fill can begin.
 		let pageIsActive = document.visibilityState === 'visible';
 		let activeWaiters: Array<() => void> = [];
+		const metrics = document.querySelector<HTMLElement>('.sorting-metrics');
+		const algorithmMetric = metrics?.querySelector<HTMLElement>('[data-sort-algorithm]');
+		const movedMetric = metrics?.querySelector<HTMLElement>('[data-sort-moved]');
+		const correctMetric = metrics?.querySelector<HTMLElement>('[data-sort-correct]');
+		const stateMetric = metrics?.querySelector<HTMLElement>('[data-sort-state]');
+		const numberFormat = new Intl.NumberFormat('en-GB');
+		let visibleFillProgress = 0;
+		const setMetric = (element: HTMLElement | null | undefined, text: string) => {
+			if (element && element.textContent !== text) element.textContent = text;
+		};
+		function updateMetrics() {
+			if (!metrics || !context || destroyed) return;
+			const total = columnCount * (columnCount + 1) / 2;
+			// Cubes have no identities: correctness is occupancy of a target cell.
+			const correct = values.reduce((sum, value, index) =>
+				sum + Math.min(index + 1, rowCount, Math.round(value * visibleFillProgress)), 0);
+			const status = canvas!.dataset.sortStatus ?? 'preparing';
+			const labels: Record<string, string> = {
+				preparing: 'Preparing', filling: 'Filling', sorting: 'Sorting',
+				complete: 'Complete', reduced: 'Reduced motion', error: 'Unavailable',
+			};
+			setMetric(algorithmMetric, canvas!.dataset.sortAlgorithm || '—');
+			setMetric(movedMetric, numberFormat.format(movementCount));
+			setMetric(correctMetric, `${numberFormat.format(correct)} / ${numberFormat.format(total)}`);
+			setMetric(stateMetric, !pageIsActive && ['filling', 'sorting'].includes(status) ? 'Paused' : labels[status] ?? status);
+			canvas!.dataset.sortCorrect = String(correct);
+			canvas!.dataset.sortTotal = String(total);
+			metrics.hidden = false;
+		}
 
 		debug('script initialized', {
 			version: __BUILD_VERSION__,
@@ -143,6 +202,8 @@
 
 		function draw(fillProgress = 1) {
 			if (!context || destroyed) return;
+			visibleFillProgress = fillProgress;
+			updateMetrics();
 
 			const width = canvas.width / pixelRatio;
 			const height = canvas.height / pixelRatio;
@@ -495,6 +556,10 @@
 			cellHeight = plotHeight / rowCount;
 			activeMove = null;
 			values = createRandomDistribution();
+			movementCount = 0;
+			canvas.dataset.sortMoves = '0';
+			canvas.dataset.sortAlgorithm = '';
+			canvas.dataset.sortStatus = 'preparing';
 			initialDisorder = Math.max(1, calculateDisorder(values));
 			draw(reducedMotion.matches ? 1 : 0);
 			debug('grid resized and regenerated', {
@@ -516,7 +581,11 @@
 			if (destroyed) return;
 			debug('animation run started', { run, reducedMotion: reducedMotion.matches });
 			cancelAnimationFrame(animationFrame);
+			movementCount = 0;
+			canvas.dataset.sortMoves = '0';
+			canvas.dataset.sortAlgorithm = '';
 			if (reducedMotion.matches) {
+				canvas.dataset.sortStatus = 'reduced';
 				values = Array.from({ length: columnCount }, (_, index) => index + 1);
 				draw();
 				debug('reduced-motion staircase drawn', { run });
@@ -543,6 +612,7 @@
 			canvas.dataset.sortAlgorithm = selectedAlgorithm.name;
 			canvas.dataset.sortMoves = '0';
 			canvas.dataset.sortStatus = 'sorting';
+			updateMetrics();
 			debug('sorting phase started', {
 				run,
 				algorithm: selectedAlgorithm.name,
@@ -554,6 +624,7 @@
 			await selectedAlgorithm.sort(run);
 			if (run !== animationRun) return;
 			canvas.dataset.sortStatus = 'complete';
+			updateMetrics();
 			debug('sorting phase completed', {
 				run,
 				algorithm: selectedAlgorithm.name,
@@ -576,6 +647,7 @@
 			debug('animation restart requested', { run });
 			void animate(run).catch((error) => {
 				canvas.dataset.sortStatus = 'error';
+				updateMetrics();
 				console.error('[SortingBackground] Animation run failed.', { run, error });
 			});
 		}
@@ -588,6 +660,7 @@
 			if (nextActive === pageIsActive) return;
 
 			pageIsActive = nextActive;
+			updateMetrics();
 			debug(pageIsActive ? 'animation resumed' : 'animation paused', {
 				visibilityState: document.visibilityState,
 				pendingWaiters: activeWaiters.length,

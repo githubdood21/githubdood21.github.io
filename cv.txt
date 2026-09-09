@@ -1,0 +1,285 @@
+\documentclass[11pt,a4paper]{article}
+
+% =========================================================
+% Packages
+% =========================================================
+
+\usepackage[
+    top=0.72in,
+    bottom=0.72in,
+    left=0.78in,
+    right=0.78in
+]{geometry}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{fontawesome5}
+
+% =========================================================
+% General formatting
+% =========================================================
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{2em}
+
+\raggedbottom
+
+\definecolor{headingcolor}{HTML}{1F2937}
+\definecolor{linkcolor}{HTML}{374151}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=linkcolor,
+    linkcolor=linkcolor
+}
+
+% =========================================================
+% Section formatting
+% =========================================================
+
+\titleformat{\section}
+    {\large\bfseries\color{headingcolor}}
+    {}
+    {0em}
+    {}
+    [\vspace{2pt}\titlerule]
+
+\titlespacing*{\section}
+    {0pt}
+    {14pt}
+    {7pt}
+
+% =========================================================
+% List formatting
+% =========================================================
+
+\setlist[itemize]{
+    leftmargin=1.25em,
+    itemsep=3.5pt,
+    topsep=4pt,
+    parsep=0pt,
+    partopsep=0pt
+}
+
+% =========================================================
+% Custom commands
+% =========================================================
+
+\newcommand{\resumeEntry}[4]{
+    \begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{0.25\textwidth}@{}}
+        \textbf{#1} & \textbf{#3} \\
+        \textit{#2} & \textit{#4}
+    \end{tabularx}
+    \vspace{2pt}
+}
+
+\newcommand{\projectEntry}[2]{
+    \textbf{#1}\par\nopagebreak
+    {#2\par}
+    \vspace{1pt}
+}
+
+\newcommand{\skillCategory}[2]{
+    \textbf{#1:} #2\\
+}
+
+% =========================================================
+% Document
+% =========================================================
+
+\begin{document}
+
+% =========================================================
+% Header
+% =========================================================
+
+\begin{center}
+    {\LARGE\bfseries Vedran Ilievski}\\[4pt]
+
+    {\large Software Engineer}\\[7pt]
+
+    Skopje, North Macedonia
+    \enspace$\vert$\enspace
+    +389 78 841 575\\[3pt]
+
+    \href{mailto:ilievskivedran@yahoo.com}
+    {ilievskivedran@yahoo.com}
+    \enspace$\vert$\enspace
+    \href{https://githubdood21.github.io/}
+    {githubdood21.github.io}\\[3pt]
+
+    \href{https://github.com/githubdood21}
+    {github.com/githubdood21}
+    \enspace$\vert$\enspace
+    \href{https://www.linkedin.com/in/vedran-ilievski/}
+    {linkedin.com/in/vedran-ilievski}
+\end{center}
+
+% =========================================================
+% Professional summary
+% =========================================================
+
+\section*{Professional Summary}
+
+Software Engineer with 2+ years of experience building desktop applications, backend services, and web platforms. My work includes application design, frontend and backend development, and database design, with a focus on performance and maintainability. Interested in hardware-aware optimization, high-performance computing, computer graphics, and practical engineering problems.
+
+% =========================================================
+% Experience
+% =========================================================
+
+\section*{Professional Experience}
+
+\resumeEntry
+    {Sezakompjuteri}
+    {Software Engineer \textbar\ Co-Founder}
+    {2024 -- Present}
+    {Skopje, North Macedonia}
+
+\begin{itemize}
+    \item Developing a hardware marketplace for a community of approximately 15,000 PC enthusiasts, with launch planned for 2026.
+
+    \item Selected the technology stack and designed the application structure, with a focus on maintainability and future feature development.
+
+    \item Building the frontend, backend, database, and access controls with Angular, ASP.NET Core, Entity Framework Core, and SQL Server.
+
+    \item Planning features and refining performance as the platform develops toward its first public release.
+\end{itemize}
+
+% =========================================================
+% DalMax Frigo
+% =========================================================
+
+\resumeEntry
+    {DalMax Frigo}
+    {Web Developer \textbar\ Freelance}
+    {2025 -- Present}
+    {}
+
+\begin{itemize}
+    \item Building a responsive landing page to showcase the company's services and construction projects, working directly with the client on design and content. Using HTML, CSS, and JavaScript.
+\end{itemize}
+
+% =========================================================
+% Projects
+% =========================================================
+
+\section*{Selected Projects}
+
+
+\projectEntry
+    {GlujLens -- Full End-to-End OCR Pipeline}
+    {{\small\faLock\ Proprietary Project}}
+
+\begin{itemize}
+    \item Developing a cross-platform desktop application for text detection, recognition, and translation with C\#, .NET 9, and Avalonia UI.
+
+    \item Using ONNX for inference with U-Net, CNN, and DETR models of varying sizes and scope to accommodate different accuracy and hardware requirements.
+
+    \item Training models with Python and PyTorch, with ROCm used exclusively for training acceleration.
+
+    \item Integrating configurable OCR and translation providers so the pipeline can support different processing workflows.
+\end{itemize}
+
+\vspace{6pt}
+
+\projectEntry
+    {Gluj-Bench -- Vendor-Neutral Hardware Benchmark}
+    {\small
+    \url{https://github.com/githubdood21/Gluj-Bench}\par\nopagebreak
+    \url{https://github.com/githubdood21/Gluj-Bench/releases}
+    }
+
+\begin{itemize}
+    \item Developing a vendor-neutral Windows benchmarking suite for CPU/GPU compute, cache, RAM, VRAM, and host-to-GPU bandwidth.
+
+    \item Using transparent, reproducible workloads to report individual performance measurements rather than a single aggregate score.
+
+    \item Building the application in Rust with a \texttt{Slint} desktop interface and \texttt{wgpu}/WGSL compute workloads; public beta available under the MIT License.
+\end{itemize}
+
+\vspace{6pt}
+
+\projectEntry
+    {Gluj-Drive -- Windows-Native Private Media Server}
+    {\small
+    \url{https://github.com/githubdood21/Gluj-Drive}\par\nopagebreak
+    \url{https://github.com/githubdood21/Gluj-Drive/releases}
+    }
+
+\begin{itemize}
+    \item Developing a private Windows photo and video server with LAN/Tailscale access and responsive desktop and mobile galleries for browsing, streaming, and uploads.
+
+    \item Indexing media in place without reorganizing or duplicating existing folders.
+
+    \item Offering optional TinyCLIP semantic search for natural-language queries, with all search processing kept local.
+
+    \item Built with ASP.NET Core, React, and TypeScript; public beta under the Apache 2.0 License.
+\end{itemize}
+
+\vspace{6pt}
+% =========================================================
+% Technical skills
+% =========================================================
+
+\skillCategory
+    {Languages}
+    {C\#, C/C++, Rust, Python, TypeScript, JavaScript, SQL, Java}
+\skillCategory
+    {Frameworks}
+    {ASP.NET Core, Entity Framework Core, Angular, React, Avalonia UI, Slint,
+    Django, Express.js, Node.js}
+\skillCategory
+    {AI \& HPC}
+    {PyTorch, ONNX, CUDA, ROCm/HIP, Vulkan, SIMD, Multithreading, U-Net, CNN, DETR}
+\skillCategory
+    {Graphics}
+    {Three.js, wgpu, WGSL}
+\skillCategory
+    {Databases}
+    {Microsoft SQL Server, SQLite}
+\skillCategory
+    {DevOps}
+    {Docker, GitHub Actions, Git}
+\skillCategory
+    {Platforms}
+    {Windows, Linux}
+% =========================================================
+% Education
+% =========================================================
+
+\section*{Education}
+
+\resumeEntry
+    {Ss. Cyril and Methodius University -- FINKI}
+    {Bachelor's Degree, Internet Networks and Security}
+    {2021 -- Present}
+    {Skopje}
+
+\vspace{5pt}
+
+\resumeEntry
+    {SETU Mihajlo Pupin}
+    {Computer Technology and Automation}
+    {2017 -- 2021}
+    {Skopje}
+
+% =========================================================
+% Additional information
+% =========================================================
+
+\section*{Additional Information}
+
+\textbf{Languages:} Macedonian, English\\[4pt]
+\textbf{Driver's License:} Category B
+
+\end{document}

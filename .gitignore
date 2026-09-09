@@ -2,6 +2,8 @@
 dist/
 # generated types
 .astro/
+# CV PDF generated from cv.txt before development and production builds
+public/cv.pdf
 
 # dependencies
 node_modules/

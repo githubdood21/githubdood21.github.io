@@ -2,7 +2,15 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Build CV PDF",
+      "type": "process",
+      "command": "node",
+      "args": ["${workspaceFolder}/scripts/build-cv.mjs"],
+      "problemMatcher": []
+    },
+    {
       "label": "Start Astro dev server",
+      "dependsOn": "Build CV PDF",
       "type": "process",
       "command": "${workspaceFolder}\\node_modules\\.bin\\astro.cmd",
       "args": [

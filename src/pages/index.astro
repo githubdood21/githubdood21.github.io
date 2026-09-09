@@ -55,6 +55,12 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 					<header>
 						<h1 id="hero-title">Vedran Ilievski</h1>
 						<p class="hero-title">Software Engineer</p>
+						<div class="hero-actions">
+							<a class="cv-button" href={withBase('cv.pdf')} target="_blank" rel="noopener noreferrer" aria-label="View CV (PDF, opens in a new tab)">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
+								View CV <span class="cv-button__format">PDF ↗</span>
+							</a>
+						</div>
 					</header>
 					<section>
 						<p>I build high-performance desktop applications, scalable backend services, and modern web platforms with a passion for efficient system design and hardware-aware optimization.</p>
@@ -66,7 +72,7 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 						</article>
 						<article class="highlight-card highlight-card--experience">
 							<span class="highlight-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/><path d="M16 7h3v3"/></svg></span>
-							<div class="highlight-content"><p class="highlight-label">Experience</p><p class="highlight-value">4+ years</p><p class="highlight-detail">Professional engineering</p></div>
+							<div class="highlight-content"><p class="highlight-label">Experience</p><p class="highlight-value">2+ years</p><p class="highlight-detail">Software engineering</p></div>
 						</article>
 					</section>
 
@@ -87,7 +93,7 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 							</div>
 							<div class="skill-group skill-group--machine-learning">
 								<dt><span class="skill-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 1v3m6-3v3M9 20v3m6-3v3M1 9h3m-3 6h3m16-6h3m-3 6h3M10 10h4v4h-4z"/></svg></span>Machine learning &amp; high-performance computing</dt>
-								<dd><ul class="skill-pills"><li>PyTorch</li><li>ROCm/HIP</li><li>CUDA</li><li>Vulkan</li><li>SIMD</li><li>Multithreading</li><li>U-Net</li><li>CNN</li><li>DETR</li></ul></dd>
+								<dd><ul class="skill-pills"><li>PyTorch</li><li>ONNX</li><li>ROCm/HIP</li><li>CUDA</li><li>Vulkan</li><li>SIMD</li><li>Multithreading</li><li>U-Net</li><li>CNN</li><li>DETR</li></ul></dd>
 							</div>
 						</dl>
 					</section>
@@ -95,7 +101,7 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 					<section class="hero-signals" aria-label="Professional highlights">
 						<article class="signal-card signal-card--one"><p class="signal-label">Total projects</p><p class="signal-value">11</p></article>
 						<article class="signal-card signal-card--two"><p class="signal-label">Currently working on</p><p class="signal-value" style="font-size: 16px;">Sezakompjuteri<br />GlujLens<br />DalMax Frigo</p></article>
-						<article class="signal-card signal-card--three"><p class="signal-label">Current role</p><p class="signal-value" style="font-size: 16px;">Co-founder and Lead Software Engineer at Sezakompjuteri</p></article>
+						<article class="signal-card signal-card--three"><p class="signal-label">Current role</p><p class="signal-value" style="font-size: 16px;">Co-founder and Software Engineer at Sezakompjuteri</p></article>
 					</section>
 				</article>
 			</section>
@@ -110,9 +116,9 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 					<header class="content-heading"><h2 id="experience-title">Work experience</h2></header>
 					<div class="experience-timeline">
 						<article class="experience-entry">
-							<p class="entry-meta">Sezakompjuteri · 2022–Present</p>
-							<h3>Lead Software Engineer – Co-founder</h3>
-							<p>As lead engineer, I am responsible for the technical vision, architecture, and long-term development of Sezakompjuteri, a computer hardware marketplace platform. I lead every stage of the software lifecycle, from initial planning and technology selection to deployment, infrastructure, and ongoing maintenance.</p>
+							<p class="entry-meta">Sezakompjuteri · 2024–Present</p>
+							<h3>Software Engineer – Co-founder</h3>
+							<p>I co-founded Sezakompjuteri and am developing a computer hardware marketplace for its existing community. The platform is still in development, with a launch planned for 2026. My work covers application design, frontend and backend development, and database design.</p>
 							<div class="experience-metrics" aria-label="Sezakompjuteri highlights">
 								<div class="experience-metric experience-metric--community">
 									<span class="experience-metric__icon" aria-hidden="true">
@@ -136,15 +142,14 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 									</span>
 									<span>
 										<strong>sezakompjuteri.com</strong>
-										<small>Coming in 2026</small>
+										<small>In development · Launch planned for 2026</small>
 									</span>
 								</div>
 							</div>
 							<ul class="responsibility-list">
-							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Selected the technology stack, frameworks, development tools, and architectural patterns to ensure scalability, maintainability, and long-term growth.</span></li>
-							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Designed and implemented the entire application from the ground up, including backend services, frontend, database, authentication, security, and supporting systems.</span></li>
-							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Directed feature planning, performance optimization, system scalability, and overall product scope throughout the project's lifecycle.</span></li>
-							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Owned deployment, hosting, CI/CD automation, server administration, and operational maintenance to ensure reliable production releases.</span></li>
+							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Selected the technology stack and development tools, and planned the application structure with maintainability in mind.</span></li>
+							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Building the frontend, backend services, database, authentication, and authorization using Angular, ASP.NET Core, Entity Framework Core, and SQL Server.</span></li>
+							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Working on feature planning, implementation, and performance improvements as the platform develops toward its first public release.</span></li>
 							</ul>
 
 							<div class="skill-group skill-group--languages">
@@ -154,8 +159,8 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 
 						<article class="experience-entry">
 							<p class="entry-meta">DalMax Frigo · 2025–Present</p>
-							<h3>Lead Software Engineer – Contract</h3>
-							<p>I collaborate directly with company leadership to redesign and modernize the organization's online presence through an interactive, high-performance website that showcases construction projects using real-time 3D visualization.</p>
+							<h3>Web Developer – Freelance Project</h3>
+							<p>I am building a website for DalMax Frigo as a freelance project, working directly with the company on its design and content. The project showcases the company's services and construction projects through interactive 3D visualization.</p>
 							<ul class="responsibility-list">
 							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Designing and developing a modern landing page with interactive 3D experiences to better showcase the company's services and completed projects.</span></li>
 							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Implementing a Three.js-based 3D viewer capable of visualizing construction projects through segmented build phases and interactive scene controls.</span></li>
@@ -178,7 +183,7 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 									<span class="project-meta__release">No public release yet</span>
 								</div>
 								<h3>GlujLens</h3>
-								<p>GlujLens is a high-performance cross-platform OCR application built around a custom multi-model AI pipeline. By combining lightweight vision models with configurable OCR and translation providers, it delivers accurate text detection, recognition, and translation while utilizing CPU, GPU, or NPU acceleration through ROCm, CUDA, and Vulkan for efficient inference across a wide range of hardware.</p>
+								<p>GlujLens is a high-performance cross-platform OCR application built around a custom multi-model AI pipeline. It combines U-Net, CNN, and DETR models of varying sizes and scope with configurable OCR and translation providers for text detection, recognition, and translation. Inference uses ONNX, while model training uses Python and PyTorch with ROCm. ROCm is used only for training.</p>
 							</div>
 							<ul class="project-tags"> 
 								<li>C#</li>
@@ -189,9 +194,8 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 								<li>CNN</li>
 								<li>DETR</li>
 							    <li>PyTorch</li>
-							    <li>CUDA</li>
-							    <li>ROCm</li>
-							    <li>Vulkan</li>
+							    <li>ONNX inference</li>
+							    <li>ROCm training</li>
 								<li>Cross-platform</li>
 							</ul>
 							<div class="project-access-state">
@@ -209,7 +213,7 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 									<span class="project-meta__release project-meta__release--public">Public release</span>
 								</div>
 								<h3>Gluj-Bench</h3>
-								<p>Gluj-Bench is a free, vendor-neutral hardware benchmarking suite built in Rust to evaluate modern desktop systems. It measures CPU and GPU compute performance alongside cache, RAM, VRAM, and host-to-GPU bandwidth using transparent, reproducible workloads.</p>
+								<p>Gluj-Bench is a free, vendor-neutral hardware benchmarking suite built in Rust with a Slint desktop interface to evaluate modern desktop systems. It measures CPU and GPU compute performance alongside cache, RAM, VRAM, and host-to-GPU bandwidth using transparent, reproducible workloads.</p>
 							</div>
 							<ul class="project-tags">
 								<li>Rust</li><li>C/C++</li><li>SIMD</li><li>Multithreading</li><li>Slint</li><li>wgpu</li><li>WGSL</li><li>Windows x64</li><li>MIT</li>
