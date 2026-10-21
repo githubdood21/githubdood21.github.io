@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">Vedran Ilievski — Software Engineer</title>
+  <desc id="description">Portfolio preview featuring full-stack web development, .NET, Angular, and PostgreSQL, with cyan and purple sorting bars on a dark background.</desc>
+  <defs>
+    <linearGradient id="background" x2="1" y2="1">
+      <stop stop-color="#071622"/>
+      <stop offset="1" stop-color="#141127"/>
+    </linearGradient>
+    <linearGradient id="accent">
+      <stop stop-color="#55d7ff"/>
+      <stop offset="1" stop-color="#b785ff"/>
+    </linearGradient>
+    <linearGradient id="bars" x2="0" y2="1">
+      <stop stop-color="#b785ff" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#55d7ff" stop-opacity=".15"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#7ba5ce" stroke-opacity=".045"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect x="30" y="30" width="1140" height="570" rx="8" fill="none" stroke="#7394b6" stroke-opacity=".28"/>
+  <rect x="72" y="83" width="54" height="4" rx="2" fill="url(#accent)"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="143" y="91" font-size="19" font-weight="600" letter-spacing="3" fill="#a8bed4">PORTFOLIO</text>
+    <text x="68" y="223" font-size="78" font-weight="700" letter-spacing="-3" fill="#f5f8ff">Vedran Ilievski</text>
+    <text x="72" y="283" font-size="36" font-weight="500" fill="#7eeaff">Software Engineer</text>
+    <text x="72" y="359" font-size="27" fill="#cad7e8">Full-stack web development.</text>
+    <text x="72" y="400" font-size="27" fill="#cad7e8">Reliable APIs. Performant backends.</text>
+    <g font-size="18" font-weight="600" text-anchor="middle">
+      <rect x="72" y="445" width="88" height="40" rx="20" fill="#55d7ff" fill-opacity=".08" stroke="#55d7ff" stroke-opacity=".4"/>
+      <text x="116" y="471" fill="#8ce5ff">.NET</text>
+      <rect x="172" y="445" width="116" height="40" rx="20" fill="#b785ff" fill-opacity=".08" stroke="#b785ff" stroke-opacity=".4"/>
+      <text x="230" y="471" fill="#d0b1ff">Angular</text>
+      <rect x="300" y="445" width="150" height="40" rx="20" fill="#55d7ff" fill-opacity=".08" stroke="#55d7ff" stroke-opacity=".4"/>
+      <text x="375" y="471" fill="#8ce5ff">PostgreSQL</text>
+    </g>
+    <text x="72" y="555" font-size="21" fill="#9db1c9">githubdood21.github.io</text>
+  </g>
+  <g fill="url(#bars)" stroke="#b785ff" stroke-opacity=".2">
+    <rect x="842" y="426" width="25" height="78" rx="3"/>
+    <rect x="879" y="387" width="25" height="117" rx="3"/>
+    <rect x="916" y="348" width="25" height="156" rx="3"/>
+    <rect x="953" y="309" width="25" height="195" rx="3"/>
+    <rect x="990" y="270" width="25" height="234" rx="3"/>
+    <rect x="1027" y="231" width="25" height="273" rx="3"/>
+    <rect x="1064" y="192" width="25" height="312" rx="3"/>
+    <rect x="1101" y="153" width="25" height="351" rx="3"/>
+  </g>
+  <path d="M830 519H1130" stroke="url(#accent)" stroke-opacity=".5"/>
+</svg>
