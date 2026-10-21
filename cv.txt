@@ -5,10 +5,10 @@
 % =========================================================
 
 \usepackage[
-    top=0.72in,
-    bottom=0.72in,
-    left=0.78in,
-    right=0.78in
+    top=0.52in,
+    bottom=0.52in,
+    left=0.68in,
+    right=0.68in
 ]{geometry}
 
 \usepackage[T1]{fontenc}
@@ -56,7 +56,7 @@
 
 \titlespacing*{\section}
     {0pt}
-    {14pt}
+    {7pt}
     {7pt}
 
 % =========================================================
@@ -65,7 +65,7 @@
 
 \setlist[itemize]{
     leftmargin=1.25em,
-    itemsep=3.5pt,
+    itemsep=3pt,
     topsep=4pt,
     parsep=0pt,
     partopsep=0pt
@@ -90,7 +90,7 @@
 }
 
 \newcommand{\skillCategory}[2]{
-    \textbf{#1:} #2\\
+    \textbf{#1:} #2\par
 }
 
 % =========================================================
@@ -105,24 +105,22 @@
 
 \begin{center}
     {\LARGE\bfseries Vedran Ilievski}\\[4pt]
-
     {\large Software Engineer}\\[7pt]
 
-    Skopje, North Macedonia
-    \enspace$\vert$\enspace
-    +389 78 841 575\\[3pt]
+    \begin{tabular}{r@{\enspace$\vert$\enspace}l}
+        Skopje, North Macedonia
+        & +389 78 841 575 \\[3pt]
 
-    \href{mailto:ilievskivedran@yahoo.com}
-    {ilievskivedran@yahoo.com}
-    \enspace$\vert$\enspace
-    \href{https://githubdood21.github.io/}
-    {githubdood21.github.io}\\[3pt]
+        \href{mailto:ilievskivedran@yahoo.com}
+            {ilievskivedran@yahoo.com}
+        & \href{https://githubdood21.github.io/}
+            {Portfolio Website} \\[3pt]
 
-    \href{https://github.com/githubdood21}
-    {github.com/githubdood21}
-    \enspace$\vert$\enspace
-    \href{https://www.linkedin.com/in/vedran-ilievski/}
-    {linkedin.com/in/vedran-ilievski}
+        \href{https://github.com/githubdood21}
+            {GitHub}
+        & \href{https://www.linkedin.com/in/vedran-ilievski/}
+            {LinkedIn}
+    \end{tabular}
 \end{center}
 
 % =========================================================
@@ -131,7 +129,7 @@
 
 \section*{Professional Summary}
 
-Software Engineer with 2+ years of experience building desktop applications, backend services, and web platforms. My work includes application design, frontend and backend development, and database design, with a focus on performance and maintainability. Interested in hardware-aware optimization, high-performance computing, computer graphics, and practical engineering problems.
+Backend-focused Software Engineer specializing in .NET, system architecture, and performance, with experience across frontend technologies, databases, and hardware-aware optimization. Builds full-stack applications, designs database schemas and APIs, and optimizes software across the application and hardware stack. Currently developing Se za Kompjuteri, GlujLens, and Gluj-Bench, with a focus on maintainable systems and efficient local AI inference.
 
 % =========================================================
 % Experience
@@ -140,113 +138,119 @@ Software Engineer with 2+ years of experience building desktop applications, bac
 \section*{Professional Experience}
 
 \resumeEntry
-    {Sezakompjuteri}
+    {Se za Kompjuteri - Hardware Marketplace |
+    \href{https://sezakompjuteri.com/}{\small sezakompjuteri.com}}
     {Software Engineer \textbar\ Co-Founder}
-    {2024 -- Present}
+    {2024 - Present}
     {Skopje, North Macedonia}
-
 \begin{itemize}
-    \item Developing a hardware marketplace for a community of approximately 15,000 PC enthusiasts, with launch planned for 2026.
+    \item Selected .NET for the backend based on team expertise, long-term support, and efficient CPU-based neural network inference through ONNX Runtime; chose PostgreSQL for ARM support on Linux to meet deployment constraints.
 
-    \item Selected the technology stack and designed the application structure, with a focus on maintainability and future feature development.
+    \item Co-founded and launched a hardware marketplace for a community of 15,000+ PC enthusiasts. Collaborate with the founding team and community on feature planning, including a custom PC build planner integrating marketplace listings with products from local hardware retailers.
 
-    \item Building the frontend, backend, database, and access controls with Angular, ASP.NET Core, Entity Framework Core, and SQL Server.
+    \item Designed and implemented semantic product search using vector indexing, achieving 17 ms p95 latency across a growing catalog of 47,000 hardware components while improving discovery across inconsistent product names and specifications.
 
-    \item Planning features and refining performance as the platform develops toward its first public release.
+    \item Established xUnit unit and API integration testing early in development, covering services and controllers to catch regressions and conflicting changes before deployment.
+
+    \item Optimized Entity Framework Core and PostgreSQL queries through composite indexing, lightweight DTO projections, reduced joins, and coordinated database/application caching, enabling complex filtering and pagination while preserving correct deletion ordering across nested dependencies.
+
+    \item Built component-based Angular pages integrated with an ASP.NET Core SignalR backend, providing real-time messaging, notifications, and live marketplace listing updates over WebSockets.
+
+    \item Implemented OAuth 2.0 authentication, JWTs in HttpOnly cookies, role-based access control, and XSRF protection across ASP.NET Core and Angular.
 \end{itemize}
 
-% =========================================================
-% DalMax Frigo
-% =========================================================
-
-\resumeEntry
-    {DalMax Frigo}
-    {Web Developer \textbar\ Freelance}
-    {2025 -- Present}
-    {}
-
-\begin{itemize}
-    \item Building a responsive landing page to showcase the company's services and construction projects, working directly with the client on design and content. Using HTML, CSS, and JavaScript.
-\end{itemize}
+\textbf{Technologies:} C\#, .NET 8, ASP.NET Core, Angular 19, Entity Framework Core, PostgreSQL, SignalR, ONNX Runtime, xUnit, Docker, GitHub Actions
 
 % =========================================================
 % Projects
 % =========================================================
 
-\section*{Selected Projects}
+\section*{Projects}
 
 
 \projectEntry
     {GlujLens -- Full End-to-End OCR Pipeline}
-    {{\small\faLock\ Proprietary Project}}
+    {\small\faLock\ Proprietary Project - \faTools\ Work In Progress}
+
 
 \begin{itemize}
-    \item Developing a cross-platform desktop application for text detection, recognition, and translation with C\#, .NET 9, and Avalonia UI.
+    \item Developing a cross-platform desktop pipeline for window, frame, and text detection, OCR, translation, and optional image processing.
 
-    \item Using ONNX for inference with U-Net, CNN, and DETR models of varying sizes and scope to accommodate different accuracy and hardware requirements.
+    \item Configured local GPU-accelerated neural network training with Python, PyTorch, and AMD ROCm/HIP.
 
-    \item Training models with Python and PyTorch, with ROCm used exclusively for training acceleration.
+    \item Designing compact neural networks for NPUs, GPUs, and AVX2 CPUs, targeting sub-200 ms inference on 1920$\times$1080 images within a 1.5--2 TFLOP FP16 compute budget.
 
-    \item Integrating configurable OCR and translation providers so the pipeline can support different processing workflows.
+    \item Using ONNX Runtime with FP16/INT8 models for hardware-portable inference; integrating configurable OCR and translation providers, including Tesseract and purpose-trained models.
 \end{itemize}
+
+    \textbf{Technologies:} C\#, Python, .NET 10, Avalonia UI, ROCm/HIP, ONNX Runtime, PyTorch
+
+\vspace{6pt}
+
+\newpage
+
+\projectEntry
+    {Gluj-Bench -- Open Source Vendor-Neutral Hardware Benchmark}
+    {\small
+    \faFlask\ v0.4.0 - \faBalanceScale\ GPL-3.0-only
+    \enspace\textbar\enspace
+    \href{https://github.com/githubdood21/Gluj-Bench}{Source}
+    \enspace\textbar\enspace
+    \href{https://github.com/githubdood21/Gluj-Bench/releases}{Releases}}
+
+\begin{itemize}
+    \item Built a vendor-neutral Windows x64 benchmark in Rust and Slint, with a separate worker using versioned JSON IPC for progress reporting and cancellation.
+
+    \item Implemented CPU cache/RAM bandwidth and latency tests, AVX2/FMA vector and matrix workloads, and configurable core allocation and cache-aware datasets.
+
+    \item Implemented Vulkan GPU vector, FP16/INT8 cooperative-matrix, memory bandwidth, and system-RAM offload benchmarks without vendor-specific compute SDKs.
+
+    \item Added dataset sweeps, sample statistics, and interactive graphs to analyze memory pressure, with separate GPU execution and end-to-end timings.
+
+    \item Added persistent history and PNG snapshots with embedded results for comparison imports; automated checks, tests, and release builds through GitHub Actions.
+\end{itemize}
+
+    \textbf{Technologies:} Rust 2024, Slint, Vulkan, GLSL/SPIR-V, AVX2/FMA, Multithreading, JSON IPC, GitHub Actions
 
 \vspace{6pt}
 
 \projectEntry
-    {Gluj-Bench -- Vendor-Neutral Hardware Benchmark}
+    {Gluj-Drive -- Open Source Windows-Native Private Media Server}
     {\small
-    \url{https://github.com/githubdood21/Gluj-Bench}\par\nopagebreak
-    \url{https://github.com/githubdood21/Gluj-Bench/releases}
-    }
+    \faShield*\ Security \& Maintenance - \faBalanceScale\ Apache 2.0
+    \enspace\textbar\enspace
+    \href{https://github.com/githubdood21/Gluj-Drive}{Source}
+    \enspace\textbar\enspace
+    \href{https://github.com/githubdood21/Gluj-Drive/releases}{Releases}}
 
 \begin{itemize}
-    \item Developing a vendor-neutral Windows benchmarking suite for CPU/GPU compute, cache, RAM, VRAM, and host-to-GPU bandwidth.
+    \item Developed a private Windows media server with LAN/Tailscale access and responsive galleries for browsing, streaming, and uploads; indexes existing files in place without duplication.
 
-    \item Using transparent, reproducible workloads to report individual performance measurements rather than a single aggregate score.
-
-    \item Building the application in Rust with a \texttt{Slint} desktop interface and \texttt{wgpu}/WGSL compute workloads; public beta available under the MIT License.
+    \item Added optional local TinyCLIP semantic image search; maintaining security and stability across the ASP.NET Core, React, and TypeScript stack.
 \end{itemize}
 
-\vspace{6pt}
+    \textbf{Technologies:} .NET 10, ASP.NET Core, React, TypeScript, TinyCLIP, GitHub Actions
 
-\projectEntry
-    {Gluj-Drive -- Windows-Native Private Media Server}
-    {\small
-    \url{https://github.com/githubdood21/Gluj-Drive}\par\nopagebreak
-    \url{https://github.com/githubdood21/Gluj-Drive/releases}
-    }
-
-\begin{itemize}
-    \item Developing a private Windows photo and video server with LAN/Tailscale access and responsive desktop and mobile galleries for browsing, streaming, and uploads.
-
-    \item Indexing media in place without reorganizing or duplicating existing folders.
-
-    \item Offering optional TinyCLIP semantic search for natural-language queries, with all search processing kept local.
-
-    \item Built with ASP.NET Core, React, and TypeScript; public beta under the Apache 2.0 License.
-\end{itemize}
-
-\vspace{6pt}
+\vspace{7pt}
 % =========================================================
 % Technical skills
 % =========================================================
 
+\section*{Technical Skills}
+
 \skillCategory
     {Languages}
-    {C\#, C/C++, Rust, Python, TypeScript, JavaScript, SQL, Java}
+    {C\#, C/C++, Rust, Python, TypeScript, JavaScript, SQL}
 \skillCategory
     {Frameworks}
     {ASP.NET Core, Entity Framework Core, Angular, React, Avalonia UI, Slint,
-    Django, Express.js, Node.js}
+    Node.js}
 \skillCategory
     {AI \& HPC}
-    {PyTorch, ONNX, CUDA, ROCm/HIP, Vulkan, SIMD, Multithreading, U-Net, CNN, DETR}
-\skillCategory
-    {Graphics}
-    {Three.js, wgpu, WGSL}
+    {PyTorch, Vulkan, ONNX Runtime, ROCm/HIP, SIMD, Multithreading}
 \skillCategory
     {Databases}
-    {Microsoft SQL Server, SQLite}
+    {PostgreSQL, SQLite}
 \skillCategory
     {DevOps}
     {Docker, GitHub Actions, Git}
@@ -259,19 +263,24 @@ Software Engineer with 2+ years of experience building desktop applications, bac
 
 \section*{Education}
 
-\resumeEntry
-    {Ss. Cyril and Methodius University -- FINKI}
-    {Bachelor's Degree, Internet Networks and Security}
-    {2021 -- Present}
-    {Skopje}
+\begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{0.25\textwidth}@{}}
+    \textbf{Ss. Cyril and Methodius University -- FINKI}
+        & \textbf{2021 - Expected 2027} \\
+
+    \textit{Bachelor's Degree, Internet Networks and Security}
+        & \textit{Skopje, North Macedonia} \\
+
+    {\small\textit{Medical leave of absence: 2024--2025}}
+        &
+\end{tabularx}
 
 \vspace{5pt}
 
 \resumeEntry
     {SETU Mihajlo Pupin}
     {Computer Technology and Automation}
-    {2017 -- 2021}
-    {Skopje}
+    {2017 - 2021}
+    {Skopje, North Macedonia}
 
 % =========================================================
 % Additional information

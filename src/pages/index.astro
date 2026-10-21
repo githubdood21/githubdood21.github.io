@@ -1,8 +1,15 @@
 ---
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import SortingBackground from '../components/SortingBackground.astro';
 
 const baseUrl = `${import.meta.env.BASE_URL.replace(/\/+$/, '')}/`;
 const withBase = (path = '') => `${baseUrl}${path.replace(/^\/+/, '')}`;
+const cvVersion = createHash('sha256')
+	.update(readFileSync(resolve('public/cv.pdf')))
+	.digest('hex').slice(0, 12);
+const cvUrl = `${withBase('cv.pdf')}?v=${cvVersion}`;
 const builtAt = new Date();
 const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 	day: '2-digit',
@@ -56,14 +63,14 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 						<h1 id="hero-title">Vedran Ilievski</h1>
 						<p class="hero-title">Software Engineer</p>
 						<div class="hero-actions">
-							<a class="cv-button" href={withBase('cv.pdf')} target="_blank" rel="noopener noreferrer" aria-label="View CV (PDF, opens in a new tab)">
+							<a class="cv-button" href={cvUrl} target="_blank" rel="noopener noreferrer" aria-label="View CV (2-page PDF, opens in a new tab)">
 								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h5"/></svg>
-								View CV <span class="cv-button__format">PDF ↗</span>
+								View CV <span class="cv-button__format">2-page PDF ↗</span>
 							</a>
 						</div>
 					</header>
 					<section>
-						<p>I build high-performance desktop applications, scalable backend services, and modern web platforms with a passion for efficient system design and hardware-aware optimization.</p>
+						<p>I’m a backend-focused software engineer specializing in .NET, system architecture, and performance. I build full-stack applications, databases, and APIs, with experience in hardware-aware optimization and local AI inference.</p>
 					</section>
 					<section class="hero-highlights" aria-label="Career highlights">
 						<article class="highlight-card highlight-card--location">
@@ -72,7 +79,7 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 						</article>
 						<article class="highlight-card highlight-card--experience">
 							<span class="highlight-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/><path d="M16 7h3v3"/></svg></span>
-							<div class="highlight-content"><p class="highlight-label">Experience</p><p class="highlight-value">2+ years</p><p class="highlight-detail">Software engineering</p></div>
+							<div class="highlight-content"><p class="highlight-label">Experience</p><p class="highlight-value">2 years</p><p class="highlight-detail">Software engineering</p></div>
 						</article>
 					</section>
 
@@ -93,14 +100,18 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 							</div>
 							<div class="skill-group skill-group--machine-learning">
 								<dt><span class="skill-label-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9 1v3m6-3v3M9 20v3m6-3v3M1 9h3m-3 6h3m16-6h3m-3 6h3M10 10h4v4h-4z"/></svg></span>Machine learning &amp; high-performance computing</dt>
-								<dd><ul class="skill-pills"><li>PyTorch</li><li>ONNX</li><li>ROCm/HIP</li><li>CUDA</li><li>Vulkan</li><li>SIMD</li><li>Multithreading</li><li>U-Net</li><li>CNN</li><li>DETR</li></ul></dd>
+								<dd><ul class="skill-pills"><li>PyTorch</li><li>ONNX Runtime</li><li>ROCm/HIP</li><li>Vulkan</li><li>GLSL/SPIR-V</li><li>SIMD</li><li>AVX2/FMA</li><li>Multithreading</li></ul></dd>
+							</div>
+							<div class="skill-group skill-group--frameworks">
+								<dt>Databases, DevOps &amp; platforms</dt>
+								<dd><ul class="skill-pills"><li>PostgreSQL</li><li>SQLite</li><li>Docker</li><li>GitHub Actions</li><li>Git</li><li>Windows</li><li>Linux</li></ul></dd>
 							</div>
 						</dl>
 					</section>
 
 					<section class="hero-signals" aria-label="Professional highlights">
-						<article class="signal-card signal-card--one"><p class="signal-label">Total projects</p><p class="signal-value">11</p></article>
-						<article class="signal-card signal-card--two"><p class="signal-label">Currently working on</p><p class="signal-value" style="font-size: 16px;">Sezakompjuteri<br />GlujLens<br />DalMax Frigo</p></article>
+						<article class="signal-card signal-card--one"><p class="signal-label">Total projects</p><p class="signal-value">7</p></article>
+						<article class="signal-card signal-card--two"><p class="signal-label">Currently working on</p><p class="signal-value" style="font-size: 16px;">Se za Kompjuteri<br />GlujLens<br />Gluj-Bench</p></article>
 						<article class="signal-card signal-card--three"><p class="signal-label">Current role</p><p class="signal-value" style="font-size: 16px;">Co-founder and Software Engineer at Sezakompjuteri</p></article>
 					</section>
 				</article>
@@ -118,7 +129,7 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 						<article class="experience-entry">
 							<p class="entry-meta">Sezakompjuteri · 2024–Present</p>
 							<h3>Software Engineer – Co-founder</h3>
-							<p>I co-founded Sezakompjuteri and am developing a computer hardware marketplace for its existing community. The platform is still in development, with a launch planned for 2026. My work covers application design, frontend and backend development, and database design.</p>
+							<p>I co-founded and launched Se za Kompjuteri, a hardware marketplace for a community of over 15,000 PC enthusiasts. I continue to develop the platform, spanning architecture, frontend and backend development, database design, and a PC build planner combining marketplace listings with products from local retailers.</p>
 							<div class="experience-metrics" aria-label="Sezakompjuteri highlights">
 								<div class="experience-metric experience-metric--community">
 									<span class="experience-metric__icon" aria-hidden="true">
@@ -129,7 +140,7 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 										</svg>
 									</span>
 									<span>
-										<strong>~15,000</strong>
+										<strong>15,000+</strong>
 										<small>A tight-knit community of hardware enthusiasts</small>
 									</span>
 								</div>
@@ -141,35 +152,24 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 										</svg>
 									</span>
 									<span>
-										<strong>sezakompjuteri.com</strong>
-										<small>In development · Launch planned for 2026</small>
+										<strong><a href="https://sezakompjuteri.com/" target="_blank" rel="noopener noreferrer">sezakompjuteri.com ↗</a></strong>
+										<small>Live · Ongoing development</small>
 									</span>
 								</div>
 							</div>
 							<ul class="responsibility-list">
-							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Selected the technology stack and development tools, and planned the application structure with maintainability in mind.</span></li>
-							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Building the frontend, backend services, database, authentication, and authorization using Angular, ASP.NET Core, Entity Framework Core, and SQL Server.</span></li>
-							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Working on feature planning, implementation, and performance improvements as the platform develops toward its first public release.</span></li>
+							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Selected .NET for team expertise, long-term support, and CPU-based ONNX Runtime inference; chose PostgreSQL for ARM support on Linux to meet deployment constraints.</span></li>
+							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Implemented vector-indexed semantic search across 47,000 hardware components, achieving 17 ms p95 latency despite inconsistent product names and specifications.</span></li>
+							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Optimized Entity Framework Core and PostgreSQL filtering and pagination with composite indexes, DTO projections, fewer joins, and coordinated caching, while preserving deletion ordering across nested dependencies.</span></li>
+							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Built Angular pages and ASP.NET Core SignalR services for real-time messaging, notifications, and listing updates over WebSockets.</span></li>
+							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Implemented OAuth 2.0 authentication, JWTs in HttpOnly cookies, role-based access control, and XSRF protection; established xUnit unit and API integration tests.</span></li>
 							</ul>
 
 							<div class="skill-group skill-group--languages">
-								<ul class="skill-pills"><li>C#</li><li>TypeScript</li><li>Python</li><li>ASP.NET Core</li><li>Angular</li><li>Entity Framework Core</li><li>MSSQL</li><li>Git</li></ul>
+								<ul class="skill-pills"><li>C#</li><li>.NET 8</li><li>ASP.NET Core</li><li>Angular 19</li><li>Entity Framework Core</li><li>PostgreSQL</li><li>SignalR</li><li>ONNX Runtime</li><li>xUnit</li><li>Docker</li><li>GitHub Actions</li></ul>
 							</div>
 						</article>
 
-						<article class="experience-entry">
-							<p class="entry-meta">DalMax Frigo · 2025–Present</p>
-							<h3>Web Developer – Freelance Project</h3>
-							<p>I am building a website for DalMax Frigo as a freelance project, working directly with the company on its design and content. The project showcases the company's services and construction projects through interactive 3D visualization.</p>
-							<ul class="responsibility-list">
-							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Designing and developing a modern landing page with interactive 3D experiences to better showcase the company's services and completed projects.</span></li>
-							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Implementing a Three.js-based 3D viewer capable of visualizing construction projects through segmented build phases and interactive scene controls.</span></li>
-							    <li><span class="responsibility-icon" aria-hidden="true"></span><span>Optimizing rendering performance and responsiveness to ensure a smooth experience across desktop and mobile devices.</span></li>
-							</ul>
-							<div class="skill-group skill-group--languages">
-								<ul class="skill-pills"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Express.js</li><li>Three.js</li></ul>
-							</div>
-						</article>
 					</div>
 				</section>
 				<section id="projects" class="content-section projects-section" aria-labelledby="projects-title">
@@ -183,19 +183,18 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 									<span class="project-meta__release">No public release yet</span>
 								</div>
 								<h3>GlujLens</h3>
-								<p>GlujLens is a high-performance cross-platform OCR application built around a custom multi-model AI pipeline. It combines U-Net, CNN, and DETR models of varying sizes and scope with configurable OCR and translation providers for text detection, recognition, and translation. Inference uses ONNX, while model training uses Python and PyTorch with ROCm. ROCm is used only for training.</p>
+								<p>GlujLens is a cross-platform desktop pipeline for window, frame, and text detection, OCR, translation, and optional image processing. I’m designing compact neural networks for NPUs, GPUs, and AVX2 CPUs, targeting sub-200 ms inference on 1920 × 1080 images within a 1.5–2 TFLOP FP16 compute budget.</p>
+								<p>ONNX Runtime and FP16/INT8 models provide hardware-portable inference. Local training uses Python, PyTorch, and AMD ROCm/HIP; the modular pipeline supports configurable OCR and translation providers, including Tesseract and purpose-trained models.</p>
 							</div>
 							<ul class="project-tags"> 
 								<li>C#</li>
 								<li>Python</li>  
-								<li>.NET 9</li>
+								<li>.NET 10</li>
 							    <li>Avalonia UI</li>
-							    <li>U-Net</li>
-								<li>CNN</li>
-								<li>DETR</li>
+							    <li>FP16/INT8</li>
 							    <li>PyTorch</li>
-							    <li>ONNX inference</li>
-							    <li>ROCm training</li>
+							    <li>ONNX Runtime</li>
+							    <li>ROCm/HIP training</li>
 								<li>Cross-platform</li>
 							</ul>
 							<div class="project-access-state">
@@ -209,14 +208,15 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 							<div>
 								<div class="project-meta" aria-label="Project status">
 									<span class="project-meta__category">Vendor-neutral hardware benchmark for Windows</span>
-									<span class="project-meta__version">Beta · Version 0.1.0</span>
+									<span class="project-meta__version">Version 0.4.0</span>
 									<span class="project-meta__release project-meta__release--public">Public release</span>
 								</div>
 								<h3>Gluj-Bench</h3>
-								<p>Gluj-Bench is a free, vendor-neutral hardware benchmarking suite built in Rust with a Slint desktop interface to evaluate modern desktop systems. It measures CPU and GPU compute performance alongside cache, RAM, VRAM, and host-to-GPU bandwidth using transparent, reproducible workloads.</p>
+								<p>Gluj-Bench is a vendor-neutral Windows x64 benchmark built in Rust with a Slint interface and a separate worker using versioned JSON IPC for progress reporting and cancellation. It measures CPU cache and RAM bandwidth and latency, AVX2/FMA vector and matrix workloads, and Vulkan GPU vector, FP16/INT8 cooperative-matrix, memory bandwidth, and system-RAM offload performance.</p>
+								<p>Configurable dataset sweeps, sample statistics, and interactive graphs show how throughput changes under memory pressure, with separate GPU execution and end-to-end timings. Persistent history and shareable PNG snapshots embed results for comparison imports. GitHub Actions automates checks, tests, and release builds.</p>
 							</div>
 							<ul class="project-tags">
-								<li>Rust</li><li>C/C++</li><li>SIMD</li><li>Multithreading</li><li>Slint</li><li>wgpu</li><li>WGSL</li><li>Windows x64</li><li>MIT</li>
+								<li>Rust 2024</li><li>Slint</li><li>Vulkan</li><li>GLSL/SPIR-V</li><li>AVX2/FMA</li><li>Multithreading</li><li>JSON IPC</li><li>GitHub Actions</li><li>Windows x64</li><li>GPL-3.0-only</li>
 							</ul>
 							<div class="project-actions" aria-label="Gluj-Bench links">
 								<a class="project-action project-action--source" href="https://github.com/githubdood21/Gluj-Bench" target="_blank" rel="noopener noreferrer">
@@ -233,13 +233,13 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 							<div>
 								<div class="project-meta" aria-label="Project status">
 									<span class="project-meta__category">Windows-native private media server</span>
-									<span class="project-meta__version">Beta · Version 0.1.0</span>
+									<span class="project-meta__status">Security &amp; maintenance</span>
 									<span class="project-meta__release project-meta__release--public">Public release</span>
 								</div>
 								<h3>Gluj-Drive</h3>
-								<p>Gluj-Drive turns a Windows PC into a private photo and video library for LAN or Tailscale access. It indexes media in existing folders without reorganizing the originals, provides responsive desktop and mobile galleries, streams video, supports uploads, and offers optional fully local semantic search.</p>
+								<p>Gluj-Drive turns a Windows PC into a private photo and video library for LAN or Tailscale access. It indexes existing files in place without duplication, provides responsive galleries for browsing, streaming, and uploads, and offers optional local TinyCLIP semantic image search. Built with ASP.NET Core, React, and TypeScript, it is maintained with a focus on security and stability.</p>
 							</div>
-							<ul class="project-tags"><li>C#</li><li>ASP.NET Core</li><li>React</li><li>TypeScript</li><li>TinyCLIP</li><li>Windows x64</li><li>Apache 2.0</li></ul>
+							<ul class="project-tags"><li>C#</li><li>.NET 10</li><li>ASP.NET Core</li><li>React</li><li>TypeScript</li><li>TinyCLIP</li><li>GitHub Actions</li><li>Windows x64</li><li>Apache 2.0</li></ul>
 							<div class="project-actions" aria-label="Gluj-Drive links">
 								<a class="project-action project-action--source" href="https://github.com/githubdood21/Gluj-Drive" target="_blank" rel="noopener noreferrer">
 									<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-3M14 3h7v7M10 14 21 3"/></svg>
@@ -294,14 +294,6 @@ const builtAtLabel = new Intl.DateTimeFormat('en-GB', {
 								<p class="archive-project__outcome">The completed proof of concept demonstrates a full CI/CD workflow: GitHub Actions runs unit and integration tests, verifies the application inside Docker, builds a production image, and publishes it to Docker Hub.</p>
 								<ul class="archive-project__tags"><li>Node.js</li><li>Express</li><li>SQLite</li><li>Sequelize</li><li>Docker</li><li>GitHub Actions</li><li>Jest</li></ul>
 								<a class="archive-project__link" href="https://github.com/githubdood21/Service-Status-Dashboard" target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
-							</article>
-							<article class="archive-project archive-project--paused">
-								<div class="archive-project__meta"><span class="archive-project__status">Paused</span><span>Roguelike Game</span></div>
-								<h4>Cave-Game</h4>
-								<p>My role was to design a scalable, data-driven foundation that made content creation and ongoing development easier for the team, using Godot and C# as the technical base.</p>
-								<p class="archive-project__outcome">Development is paused while the team waits for additional game assets.</p>
-								<ul class="archive-project__tags"><li>Godot</li><li>C#</li><li>Data-Driven Design</li><li>Game Development</li></ul>
-								<p class="archive-project__access"><span aria-hidden="true">●</span> Private repository</p>
 							</article>
 						</div>
 					</section>
