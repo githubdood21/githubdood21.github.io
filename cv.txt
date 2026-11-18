@@ -1,294 +1,88 @@
 \documentclass[11pt,a4paper]{article}
-
-% =========================================================
-% Packages
-% =========================================================
-
-\usepackage[
-    top=0.52in,
-    bottom=0.52in,
-    left=0.68in,
-    right=0.68in
-]{geometry}
-
+\usepackage[top=0.5in,bottom=0.5in,left=0.65in,right=0.65in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[hidelinks]{hyperref}
 \usepackage{enumitem}
 \usepackage{titlesec}
-\usepackage{xcolor}
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{microtype}
-\usepackage{fontawesome5}
+\usepackage{ragged2e}
+\usepackage{xcolor}
 
-% =========================================================
-% General formatting
-% =========================================================
+% Polish informed by unslop by Damir Sokolovsky (@heydamir), CC BY 4.0.
+% https://heydamir.design/unslop
+\definecolor{secondary}{HTML}{525252}
 
 \pagenumbering{gobble}
-
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{0pt}
 \setlength{\emergencystretch}{2em}
-
 \raggedbottom
+\RaggedRight
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\titleformat{\section}{\large\bfseries}{}{0em}{}[\vspace{1pt}\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{5pt}
+\setlist[itemize]{leftmargin=1.2em,itemsep=2pt,topsep=3pt,parsep=0pt,partopsep=0pt}
 
-\definecolor{headingcolor}{HTML}{1F2937}
-\definecolor{linkcolor}{HTML}{374151}
-
-\hypersetup{
-    colorlinks=true,
-    urlcolor=linkcolor,
-    linkcolor=linkcolor
+\newcommand{\projectHeading}[3]{%
+    \par\addvspace{6pt}%
+    \textbf{#1}\enspace|\enspace{\small #2}%
+    \hfill{\small\textcolor{secondary}{#3}}\par\nopagebreak
 }
-
-% =========================================================
-% Section formatting
-% =========================================================
-
-\titleformat{\section}
-    {\large\bfseries\color{headingcolor}}
-    {}
-    {0em}
-    {}
-    [\vspace{2pt}\titlerule]
-
-\titlespacing*{\section}
-    {0pt}
-    {7pt}
-    {7pt}
-
-% =========================================================
-% List formatting
-% =========================================================
-
-\setlist[itemize]{
-    leftmargin=1.25em,
-    itemsep=3pt,
-    topsep=4pt,
-    parsep=0pt,
-    partopsep=0pt
-}
-
-% =========================================================
-% Custom commands
-% =========================================================
-
-\newcommand{\resumeEntry}[4]{
-    \begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{0.25\textwidth}@{}}
-        \textbf{#1} & \textbf{#3} \\
-        \textit{#2} & \textit{#4}
-    \end{tabularx}
-    \vspace{2pt}
-}
-
-\newcommand{\projectEntry}[2]{
-    \textbf{#1}\par\nopagebreak
-    {#2\par}
-    \vspace{1pt}
-}
-
-\newcommand{\skillCategory}[2]{
-    \textbf{#1:} #2\par
-}
-
-% =========================================================
-% Document
-% =========================================================
 
 \begin{document}
 
-% =========================================================
-% Header
-% =========================================================
-
 \begin{center}
-    {\LARGE\bfseries Vedran Ilievski}\\[4pt]
-    {\large Software Engineer}\\[7pt]
-
-    \begin{tabular}{r@{\enspace$\vert$\enspace}l}
-        Skopje, North Macedonia
-        & +389 78 841 575 \\[3pt]
-
-        \href{mailto:ilievskivedran@yahoo.com}
-            {ilievskivedran@yahoo.com}
-        & \href{https://githubdood21.github.io/}
-            {Portfolio Website} \\[3pt]
-
-        \href{https://github.com/githubdood21}
-            {GitHub}
-        & \href{https://www.linkedin.com/in/vedran-ilievski/}
-            {LinkedIn}
-    \end{tabular}
+    {\LARGE\bfseries Vedran Ilievski}\quad{\large Software Engineer}\\[5pt]
+    Skopje, North Macedonia\enspace|\enspace +389 78 841 575\enspace|\enspace
+    \href{mailto:ilievskivedran@yahoo.com}{ilievskivedran@yahoo.com}\\[3pt]
+    \href{https://githubdood21.github.io/}{Portfolio}\enspace|\enspace
+    \href{https://github.com/githubdood21}{GitHub}\enspace|\enspace
+    \href{https://www.linkedin.com/in/vedran-ilievski/}{LinkedIn}
 \end{center}
 
-% =========================================================
-% Professional summary
-% =========================================================
+\section*{Summary}
+.NET engineer building full-stack applications with ASP.NET Core, Angular, and PostgreSQL. Also develops desktop software and CPU/GPU benchmarks using C\# and Rust.
 
-\section*{Professional Summary}
-
-Backend-focused Software Engineer specializing in .NET, system architecture, and performance, with experience across frontend technologies, databases, and hardware-aware optimization. Builds full-stack applications, designs database schemas and APIs, and optimizes software across the application and hardware stack. Currently developing Se za Kompjuteri, GlujLens, and Gluj-Bench, with a focus on maintainable systems and efficient local AI inference.
-
-% =========================================================
-% Experience
-% =========================================================
-
-\section*{Professional Experience}
-
-\resumeEntry
-    {Se za Kompjuteri - Hardware Marketplace |
-    \href{https://sezakompjuteri.com/}{\small sezakompjuteri.com}}
-    {Software Engineer \textbar\ Co-Founder}
-    {2024 - Present}
-    {Skopje, North Macedonia}
+\section*{Experience}
+\textbf{Se za Kompjuteri}\enspace|\enspace\href{https://sezakompjuteri.com/}{sezakompjuteri.com}\hfill\textbf{2024 -- Present}\\
+\textcolor{secondary}{Software Engineer / Co-Founder}
 \begin{itemize}
-    \item Selected .NET for the backend based on team expertise, long-term support, and efficient CPU-based neural network inference through ONNX Runtime; chose PostgreSQL for ARM support on Linux to meet deployment constraints.
-
-    \item Co-founded and launched a hardware marketplace for a community of 15,000+ PC enthusiasts. Collaborate with the founding team and community on feature planning, including a custom PC build planner integrating marketplace listings with products from local hardware retailers.
-
-    \item Designed and implemented semantic product search using vector indexing, achieving 17 ms p95 latency across a growing catalog of 47,000 hardware components while improving discovery across inconsistent product names and specifications.
-
-    \item Established xUnit unit and API integration testing early in development, covering services and controllers to catch regressions and conflicting changes before deployment.
-
-    \item Optimized Entity Framework Core and PostgreSQL queries through composite indexing, lightweight DTO projections, reduced joins, and coordinated database/application caching, enabling complex filtering and pagination while preserving correct deletion ordering across nested dependencies.
-
-    \item Built component-based Angular pages integrated with an ASP.NET Core SignalR backend, providing real-time messaging, notifications, and live marketplace listing updates over WebSockets.
-
-    \item Implemented OAuth 2.0 authentication, JWTs in HttpOnly cookies, role-based access control, and XSRF protection across ASP.NET Core and Angular.
+    \item Co-founded and launched a hardware marketplace for a community of 15,000+ PC enthusiasts; co-designed a PC build planner combining marketplace and retailer products.
+    \item Built vector-indexed semantic search across \textbf{47,000 hardware components} with \textbf{17 ms p95 latency}, handling inconsistent product names and specifications.
+    \item Optimized EF Core and PostgreSQL filtering and pagination with composite indexes, DTO projections, fewer joins, and caching. Chose PostgreSQL for Linux ARM deployment support.
+    \item Built Angular pages and SignalR services for messaging, notifications, and live listing updates; implemented OAuth 2.0, HttpOnly JWT cookies, role-based access, and XSRF protection.
+    \item Added xUnit unit and API integration tests for services and controllers.
 \end{itemize}
-
-\textbf{Technologies:} C\#, .NET 8, ASP.NET Core, Angular 19, Entity Framework Core, PostgreSQL, SignalR, ONNX Runtime, xUnit, Docker, GitHub Actions
-
-% =========================================================
-% Projects
-% =========================================================
 
 \section*{Projects}
-
-
-\projectEntry
-    {GlujLens -- Full End-to-End OCR Pipeline}
-    {\small\faLock\ Proprietary Project - \faTools\ Work In Progress}
-
-
+\projectHeading{Gluj-Bench}{\href{https://github.com/githubdood21/Gluj-Bench}{Source}}{Rust, Slint, Vulkan, AVX2/FMA}
 \begin{itemize}
-    \item Developing a cross-platform desktop pipeline for window, frame, and text detection, OCR, translation, and optional image processing.
-
-    \item Configured local GPU-accelerated neural network training with Python, PyTorch, and AMD ROCm/HIP.
-
-    \item Designing compact neural networks for NPUs, GPUs, and AVX2 CPUs, targeting sub-200 ms inference on 1920$\times$1080 images within a 1.5--2 TFLOP FP16 compute budget.
-
-    \item Using ONNX Runtime with FP16/INT8 models for hardware-portable inference; integrating configurable OCR and translation providers, including Tesseract and purpose-trained models.
+    \item Built a vendor-neutral Windows benchmark for CPU/GPU compute, memory bandwidth, and latency, with a separate worker process, progress reporting, and cancellation.
+    \item Added dataset sweeps, timing graphs, and shareable results to compare performance under memory pressure; automated tests and releases with GitHub Actions.
 \end{itemize}
 
-    \textbf{Technologies:} C\#, Python, .NET 10, Avalonia UI, ROCm/HIP, ONNX Runtime, PyTorch
-
-\vspace{6pt}
-
-\newpage
-
-\projectEntry
-    {Gluj-Bench -- Open Source Vendor-Neutral Hardware Benchmark}
-    {\small
-    \faFlask\ v0.4.0 - \faBalanceScale\ GPL-3.0-only
-    \enspace\textbar\enspace
-    \href{https://github.com/githubdood21/Gluj-Bench}{Source}
-    \enspace\textbar\enspace
-    \href{https://github.com/githubdood21/Gluj-Bench/releases}{Releases}}
-
+\projectHeading{GlujLens}{In development; proprietary}{C\#, Python, Avalonia, ONNX Runtime}
 \begin{itemize}
-    \item Built a vendor-neutral Windows x64 benchmark in Rust and Slint, with a separate worker using versioned JSON IPC for progress reporting and cancellation.
-
-    \item Implemented CPU cache/RAM bandwidth and latency tests, AVX2/FMA vector and matrix workloads, and configurable core allocation and cache-aware datasets.
-
-    \item Implemented Vulkan GPU vector, FP16/INT8 cooperative-matrix, memory bandwidth, and system-RAM offload benchmarks without vendor-specific compute SDKs.
-
-    \item Added dataset sweeps, sample statistics, and interactive graphs to analyze memory pressure, with separate GPU execution and end-to-end timings.
-
-    \item Added persistent history and PNG snapshots with embedded results for comparison imports; automated checks, tests, and release builds through GitHub Actions.
+    \item Developing a cross-platform OCR and translation pipeline with configurable providers and compact FP16/INT8 models; training with PyTorch and AMD ROCm/HIP.
 \end{itemize}
 
-    \textbf{Technologies:} Rust 2024, Slint, Vulkan, GLSL/SPIR-V, AVX2/FMA, Multithreading, JSON IPC, GitHub Actions
-
-\vspace{6pt}
-
-\projectEntry
-    {Gluj-Drive -- Open Source Windows-Native Private Media Server}
-    {\small
-    \faShield*\ Security \& Maintenance - \faBalanceScale\ Apache 2.0
-    \enspace\textbar\enspace
-    \href{https://github.com/githubdood21/Gluj-Drive}{Source}
-    \enspace\textbar\enspace
-    \href{https://github.com/githubdood21/Gluj-Drive/releases}{Releases}}
-
+\projectHeading{Gluj-Drive}{\href{https://github.com/githubdood21/Gluj-Drive}{Source}}{ASP.NET Core, React, TypeScript}
 \begin{itemize}
-    \item Developed a private Windows media server with LAN/Tailscale access and responsive galleries for browsing, streaming, and uploads; indexes existing files in place without duplication.
-
-    \item Added optional local TinyCLIP semantic image search; maintaining security and stability across the ASP.NET Core, React, and TypeScript stack.
+    \item Built a private Windows media server with LAN/Tailscale access, responsive galleries, streaming, uploads, in-place indexing, and optional TinyCLIP image search.
 \end{itemize}
-
-    \textbf{Technologies:} .NET 10, ASP.NET Core, React, TypeScript, TinyCLIP, GitHub Actions
-
-\vspace{7pt}
-% =========================================================
-% Technical skills
-% =========================================================
 
 \section*{Technical Skills}
-
-\skillCategory
-    {Languages}
-    {C\#, C/C++, Rust, Python, TypeScript, JavaScript, SQL}
-\skillCategory
-    {Frameworks}
-    {ASP.NET Core, Entity Framework Core, Angular, React, Avalonia UI, Slint,
-    Node.js}
-\skillCategory
-    {AI \& HPC}
-    {PyTorch, Vulkan, ONNX Runtime, ROCm/HIP, SIMD, Multithreading}
-\skillCategory
-    {Databases}
-    {PostgreSQL, SQLite}
-\skillCategory
-    {DevOps}
-    {Docker, GitHub Actions, Git}
-\skillCategory
-    {Platforms}
-    {Windows, Linux}
-% =========================================================
-% Education
-% =========================================================
+\textbf{Languages:} C\#, TypeScript, JavaScript, SQL, Rust, Python, C/C++\\
+\textbf{Web \& data:} ASP.NET Core, EF Core, Angular, React, Node.js, PostgreSQL, SQLite\\
+\textbf{Tools \& platforms:} Docker, GitHub Actions, Git, xUnit, Windows, Linux
 
 \section*{Education}
-
-\begin{tabularx}{\textwidth}{@{}X>{\raggedleft\arraybackslash}p{0.25\textwidth}@{}}
-    \textbf{Ss. Cyril and Methodius University -- FINKI}
-        & \textbf{2021 - Expected 2027} \\
-
-    \textit{Bachelor's Degree, Internet Networks and Security}
-        & \textit{Skopje, North Macedonia} \\
-
-    {\small\textit{Medical leave of absence: 2024--2025}}
-        &
-\end{tabularx}
-
-\vspace{5pt}
-
-\resumeEntry
-    {SETU Mihajlo Pupin}
-    {Computer Technology and Automation}
-    {2017 - 2021}
-    {Skopje, North Macedonia}
-
-% =========================================================
-% Additional information
-% =========================================================
-
-\section*{Additional Information}
-
-\textbf{Languages:} Macedonian, English\\[4pt]
-\textbf{Driver's License:} Category B
+\textbf{Ss. Cyril and Methodius University -- FINKI}\hfill\textbf{2021 -- Expected 2027}\\
+Bachelor's Degree, Internet Networks and Security\\[4pt]
+\textbf{Languages:} Macedonian, English
 
 \end{document}
